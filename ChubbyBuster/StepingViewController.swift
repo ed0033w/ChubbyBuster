@@ -14,6 +14,9 @@ UIViewController {
     //顯示數據
     @IBOutlet weak var textView: UITextView!
     
+    @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var BMILabel: UILabel!
+    
     let motionManager = CMMotionManager()
     
     var cal: Int=0
@@ -22,7 +25,9 @@ UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.getGyroData(_:)), userInfo: nil, repeats: true);
+        //Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.getGyroData(_:)), userInfo: nil, repeats: true);
+        
+        updateUserData()
         
     }
     
@@ -79,6 +84,55 @@ UIViewController {
             self.textView.text = text
         }
     }
+    
+    func fileName(of title: String) -> String {
+        return "\(title).txt"
+    }
+    
+    let storageURL: URL = {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }()
+    
+    func fileURL(of title: String) -> URL {
+        return self.storageURL.appendingPathComponent(self.fileName(of: title))
+    }
+    
+    func save(title fileName: String,content textField: UITextField) {
+        try! textField.text?.write(to: self.fileURL(of: fileName), atomically: true, encoding: .utf8)
+    }
+    
+    func remove(title fileName: String,content textField: UITextField) {
+        try? FileManager.default.removeItem(at: self.fileURL(of: fileName))
+    }
+    
+    func updateUserData() {
+        let username = try? String(contentsOf: self.fileURL(of: "userName"), encoding: .utf8)
+        if username != nil {
+            welcomeLabel.text =  "Hi! " + username! + " 歡迎您"
+        }else{
+            welcomeLabel.text =  "未登入"
+        }
+        
+        
+        let weightString = try? String(contentsOf: self.fileURL(of: "weight"), encoding: .utf8)
+        var weight : Double?
+        weight = Double(weightString!)
+
+        let heightString = try? String(contentsOf: self.fileURL(of: "height"), encoding: .utf8)
+        var height : Double?
+        height = Double(heightString!)
+        
+        if(weight != nil && height != nil){
+            let BMI = weight!/((height!/100)*(height!/100))
+            BMILabel.text = "您的BMI為 \(BMI)"
+        }else{
+            BMILabel.text = "身高體重讀取錯誤"
+        }
+        
+    }
+    
+    
+    
     @IBAction func cleanButton(_ sender: UIButton) {
         cal=0
     }
