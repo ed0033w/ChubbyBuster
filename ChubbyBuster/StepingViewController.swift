@@ -228,13 +228,22 @@ class StepingViewController : UIViewController {
     }
     
     //背景執行
-  //  override func viewWillDisappear(_ animated: Bool) {
-  //      Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.getGyroData(_:)), userInfo: nil, repeats: true)
+    override func viewWillDisappear(_ animated: Bool) {
+        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.getGyroData(_:)), userInfo: nil, repeats: true)
         //  assert(backgroundTask != UIBackgroundTaskInvalid)
-  //  }
+    }
     
     @IBAction func cleanButton(_ sender: UIButton) {
         cal=0
+        level=0
+        exp=0
+        var text2 = "\(cal)"
+        try! text2.write(to: self.fileURL(of: "Cal"), atomically: true, encoding: .utf8)
+        text2 = "\(level)"
+        try! text2.write(to: self.fileURL(of: "Lev"), atomically: true, encoding: .utf8)
+        text2 = "\(exp)"
+        try! text2.write(to: self.fileURL(of: "Exp"), atomically: true, encoding: .utf8)
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

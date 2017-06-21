@@ -552,16 +552,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4yW-Ka-b9F">
-                                <rect key="frame" x="26" y="252" width="323" height="200"/>
+                                <rect key="frame" x="26" y="252" width="323" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="f0F-an-ncJ"/>
+                                    <constraint firstAttribute="height" constant="300" id="f0F-an-ncJ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dB-FO-Xaz">
-                                <rect key="frame" x="26" y="468" width="323" height="30"/>
+                                <rect key="frame" x="26" y="568" width="323" height="30"/>
                                 <state key="normal" title="Clean"/>
                                 <connections>
                                     <action selector="cleanButton:" destination="i5O-sR-CSz" eventType="touchUpInside" id="Iug-Rf-8qd"/>
