@@ -1,3 +1,3 @@
 # ChubbyBuster
 //Class Project in NCCU
-//IOS APP forcalory caculator and workout schedule
+//IOS APP for calory caculator and workout schedule
